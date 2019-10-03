@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@contacts/api-interface": ["libs/api-interface/src/index.ts"]
+      "@contacts/api-interface": ["libs/api-interface/src/index.ts"],
+      "@contacts/common/styles": ["libs/common/styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
