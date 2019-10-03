@@ -31,9 +31,7 @@
               "libs/common/styles/src/lib/index.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "libs/common/styles/src/lib"
-              ]
+              "includePaths": ["libs/common/styles/src/lib"]
             },
             "scripts": []
           },
@@ -89,9 +87,7 @@
               "apps/contacts/tsconfig.app.json",
               "apps/contacts/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -143,9 +139,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -174,9 +168,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -201,9 +193,7 @@
               "libs/api-interface/tsconfig.lib.json",
               "libs/api-interface/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -224,13 +214,29 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/common/styles/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["libs/common/styles/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      }
+    },
+    "common-material": {
+      "projectType": "library",
+      "root": "libs/common/material",
+      "sourceRoot": "libs/common/material/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/common/material/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }

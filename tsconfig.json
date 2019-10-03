@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@contacts/api-interface": ["libs/api-interface/src/index.ts"],
-      "@contacts/common/styles": ["libs/common/styles/src/index.ts"]
+      "@contacts/common/styles": ["libs/common/styles/src/index.ts"],
+      "@contacts/common/material": ["libs/common/material/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
