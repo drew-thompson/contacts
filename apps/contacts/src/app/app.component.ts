@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { ApplicationRef, Component } from '@angular/core';
+import { AngularFireFunctions } from '@angular/fire/functions';
 import { Message } from '@contacts/api-interface';
+import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'contacts-root',
@@ -8,6 +10,17 @@ import { Message } from '@contacts/api-interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  hello$: Observable<Message>;
+
+  constructor(
+    private appRef: ApplicationRef,
+    private fns: AngularFireFunctions
+  ) {
+    // Prevent app from becoming unstable by delaying Firebase functions call
+    this.appRef.isStable.pipe(first(stable => stable)).subscribe(() => {
+      console.log('App is stable now');
+      const hello = this.fns.httpsCallable('api/hello');
+      this.hello$ = hello({ name: 'bob' }) as Observable<Message>;
+    });
+  }
 }

@@ -1,8 +1,14 @@
 <div style="text-align:center">
   <h1>Welcome to contacts!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-  />
+  <img width="450" src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" />
 </div>
 <div>Message: {{ hello$ | async | json }}</div>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" position="end">
+    Hi
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
