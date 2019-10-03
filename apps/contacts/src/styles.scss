@@ -1,3 +1,8 @@
+// Bootstrap configuration
+@import 'functions', 'variables', 'mixins';
+@import 'bootstrap-config';
+@import '~bootstrap/scss/bootstrap';
+
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
