@@ -9,7 +9,9 @@ import {
 import { AngularFirePerformanceModule } from '@angular/fire/performance';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonMaterialModule } from '@contacts/common/material';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -21,7 +23,9 @@ import { AppComponent } from './app.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireFunctionsModule,
-    AngularFirePerformanceModule
+    AngularFirePerformanceModule,
+    AppRoutingModule,
+    CommonMaterialModule
   ],
   providers: [
     {
