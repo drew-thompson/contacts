@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   imports: [
@@ -10,9 +11,10 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         pathMatch: 'full',
-        loadChildren: () => import('@contacts/contacts/feature-listing').then(m => m.ContactsFeatureListingModule)
+        component: DetailComponent
       }
     ])
-  ]
+  ],
+  declarations: [DetailComponent]
 })
-export class ContactsFeatureShellModule {}
+export class ContactsFeatureDetailModule {}

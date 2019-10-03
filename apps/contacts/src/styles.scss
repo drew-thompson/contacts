@@ -47,3 +47,10 @@ body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+button {
+	&:focus,
+	&:active {
+		outline-width: 2px;
+	}
+}

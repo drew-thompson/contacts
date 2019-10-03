@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'contacts',
+    loadChildren: () => import('@contacts/contacts/feature-shell').then(m => m.ContactsFeatureShellModule)
+  },
+  {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'contacts'
   }
 ];
 

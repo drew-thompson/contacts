@@ -40,6 +40,9 @@
     },
     "contacts-utils": {
       "tags": ["platform:frontend", "type:util"]
+    },
+    "contacts-feature-detail": {
+      "tags": ["platform:frontend", "type:feature"]
     }
   }
 }

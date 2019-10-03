@@ -22,19 +22,10 @@
             "main": "apps/contacts/src/main.ts",
             "polyfills": "apps/contacts/src/polyfills.ts",
             "tsConfig": "apps/contacts/tsconfig.app.json",
-            "assets": [
-              "apps/contacts/src/favicon.ico",
-              "apps/contacts/src/assets"
-            ],
-            "styles": [
-              "apps/contacts/src/styles.scss",
-              "libs/common/styles/src/lib/index.scss"
-            ],
+            "assets": ["apps/contacts/src/favicon.ico", "apps/contacts/src/assets"],
+            "styles": ["apps/contacts/src/styles.scss", "libs/common/styles/src/lib/index.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules/bootstrap/scss",
-                "libs/common/styles/src/lib"
-              ]
+              "includePaths": ["node_modules/bootstrap/scss", "libs/common/styles/src/lib"]
             },
             "scripts": []
           },
@@ -86,10 +77,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/contacts/tsconfig.app.json",
-              "apps/contacts/tsconfig.spec.json"
-            ],
+            "tsConfig": ["apps/contacts/tsconfig.app.json", "apps/contacts/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -167,10 +155,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/api/tsconfig.app.json",
-              "apps/api/tsconfig.spec.json"
-            ],
+            "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -192,10 +177,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/api-interface/tsconfig.lib.json",
-              "libs/api-interface/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/api-interface/tsconfig.lib.json", "libs/api-interface/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -252,10 +234,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/contacts/ui/tsconfig.lib.json",
-              "libs/contacts/ui/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/contacts/ui/tsconfig.lib.json", "libs/contacts/ui/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -345,10 +324,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/contacts/data-access/tsconfig.lib.json",
-              "libs/contacts/data-access/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/contacts/data-access/tsconfig.lib.json", "libs/contacts/data-access/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -376,10 +352,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/contacts/utils/tsconfig.lib.json",
-              "libs/contacts/utils/tsconfig.spec.json"
-            ],
+            "tsConfig": ["libs/contacts/utils/tsconfig.lib.json", "libs/contacts/utils/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -389,6 +362,37 @@
             "jestConfig": "libs/contacts/utils/jest.config.js",
             "tsConfig": "libs/contacts/utils/tsconfig.spec.json"
           }
+        }
+      }
+    },
+    "contacts-feature-detail": {
+      "projectType": "library",
+      "root": "libs/contacts/feature-detail",
+      "sourceRoot": "libs/contacts/feature-detail/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/feature-detail/tsconfig.lib.json",
+              "libs/contacts/feature-detail/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/feature-detail/jest.config.js",
+            "tsConfig": "libs/contacts/feature-detail/tsconfig.spec.json",
+            "setupFile": "libs/contacts/feature-detail/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }
