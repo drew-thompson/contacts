@@ -25,6 +25,21 @@
     },
     "common-material": {
       "tags": ["platform:frontend", "type:util"]
+    },
+    "contacts-ui": {
+      "tags": ["platform:frontend", "type:ui"]
+    },
+    "contacts-feature-shell": {
+      "tags": ["platform:frontend", "type:feature"]
+    },
+    "contacts-feature-listing": {
+      "tags": ["platform:frontend", "type:feature"]
+    },
+    "contacts-data-access": {
+      "tags": ["platform:frontend", "type:data-access"]
+    },
+    "contacts-utils": {
+      "tags": ["platform:frontend", "type:util"]
     }
   }
 }

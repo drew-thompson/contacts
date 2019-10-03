@@ -18,7 +18,18 @@
     "paths": {
       "@contacts/api-interface": ["libs/api-interface/src/index.ts"],
       "@contacts/common/styles": ["libs/common/styles/src/index.ts"],
-      "@contacts/common/material": ["libs/common/material/src/index.ts"]
+      "@contacts/common/material": ["libs/common/material/src/index.ts"],
+      "@contacts/contacts/ui": ["libs/contacts/ui/src/index.ts"],
+      "@contacts/contacts/feature-shell": [
+        "libs/contacts/feature-shell/src/index.ts"
+      ],
+      "@contacts/contacts/feature-listing": [
+        "libs/contacts/feature-listing/src/index.ts"
+      ],
+      "@contacts/contacts/data-access": [
+        "libs/contacts/data-access/src/index.ts"
+      ],
+      "@contacts/contacts/utils": ["libs/contacts/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

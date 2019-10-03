@@ -90,9 +90,7 @@
               "apps/contacts/tsconfig.app.json",
               "apps/contacts/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -144,9 +142,7 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
+            "assets": ["apps/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -175,9 +171,7 @@
               "apps/api/tsconfig.app.json",
               "apps/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -202,9 +196,7 @@
               "libs/api-interface/tsconfig.lib.json",
               "libs/api-interface/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -225,12 +217,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/common/styles/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["libs/common/styles/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -244,18 +232,163 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "libs/common/material/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["libs/common/material/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "contacts-ui": {
+      "projectType": "library",
+      "root": "libs/contacts/ui",
+      "sourceRoot": "libs/contacts/ui/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/ui/tsconfig.lib.json",
+              "libs/contacts/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/ui/jest.config.js",
+            "tsConfig": "libs/contacts/ui/tsconfig.spec.json",
+            "setupFile": "libs/contacts/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "contacts-feature-shell": {
+      "projectType": "library",
+      "root": "libs/contacts/feature-shell",
+      "sourceRoot": "libs/contacts/feature-shell/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/feature-shell/tsconfig.lib.json",
+              "libs/contacts/feature-shell/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/feature-shell/jest.config.js",
+            "tsConfig": "libs/contacts/feature-shell/tsconfig.spec.json",
+            "setupFile": "libs/contacts/feature-shell/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "contacts-feature-listing": {
+      "projectType": "library",
+      "root": "libs/contacts/feature-listing",
+      "sourceRoot": "libs/contacts/feature-listing/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/feature-listing/tsconfig.lib.json",
+              "libs/contacts/feature-listing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/feature-listing/jest.config.js",
+            "tsConfig": "libs/contacts/feature-listing/tsconfig.spec.json",
+            "setupFile": "libs/contacts/feature-listing/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "contacts-data-access": {
+      "projectType": "library",
+      "root": "libs/contacts/data-access",
+      "sourceRoot": "libs/contacts/data-access/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/data-access/tsconfig.lib.json",
+              "libs/contacts/data-access/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/data-access/jest.config.js",
+            "tsConfig": "libs/contacts/data-access/tsconfig.spec.json",
+            "setupFile": "libs/contacts/data-access/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "contacts-utils": {
+      "root": "libs/contacts/utils",
+      "sourceRoot": "libs/contacts/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/utils/tsconfig.lib.json",
+              "libs/contacts/utils/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/utils/jest.config.js",
+            "tsConfig": "libs/contacts/utils/tsconfig.spec.json"
+          }
         }
       }
     }
