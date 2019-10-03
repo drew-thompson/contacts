@@ -1,0 +1,36 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": {
+    "predeploy": [
+      "npm run api:build"
+    ],
+    "source": "/"
+  },
+  "hosting": {
+    "public": "dist/apps/contacts",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/h2o-challenge/us-central1/api/**",
+        "function": "api"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "predeploy": [
+      "npm run contacts:build"
+    ]
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}
