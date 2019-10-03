@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "concurrently \"npm run api:serve\" \"npm run contacts:serve\"",
     "build": "ng build",
-    "test": "ng test",
+    "test": "npm run affected:test",
     "lint": "nx lint && ng lint",
     "e2e": "ng e2e",
     "affected:apps": "nx affected:apps",
