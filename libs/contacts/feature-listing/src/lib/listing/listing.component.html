@@ -7,11 +7,20 @@
 <div class="container-fluid">
   <mat-sidenav-container class="row">
     <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4">
-      <p>
-        listing works!
-      </p>
+      <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
+      <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
 
-      <pre>{{ contacts$ | async | json }}</pre>
+      <!-- <pre>{{ contacts$ | async | json }}</pre> -->
+      <ul>
+        <mat-list>
+          <ng-container *ngFor="let record of mockTacts; let i=index">
+            <contacts-record (click)="selectedIndex = i" [routerLink]="['contacts', i]" [contact]="record"
+              [class.selected]="selectedIndex === i">
+            </contacts-record>
+          </ng-container>
+        </mat-list>
+      </ul>
+
     </mat-sidenav>
     <mat-sidenav-content class="col-12 col-sm">
       <router-outlet></router-outlet>

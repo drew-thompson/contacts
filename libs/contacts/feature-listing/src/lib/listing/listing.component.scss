@@ -11,3 +11,9 @@ mat-sidenav-container.mat-sidenav-container {
 	height: 100vh;
 	margin-top: $toolbar-height;
 }
+
+ul {
+	padding-left: 0;
+	font-weight: lighter;
+	list-style: none;
+}
