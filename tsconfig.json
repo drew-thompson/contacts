@@ -24,7 +24,8 @@
       "@contacts/contacts/feature-listing": ["libs/contacts/feature-listing/src/index.ts"],
       "@contacts/contacts/data-access": ["libs/contacts/data-access/src/index.ts"],
       "@contacts/contacts/utils": ["libs/contacts/utils/src/index.ts"],
-      "@contacts/contacts/feature-detail": ["libs/contacts/feature-detail/src/index.ts"]
+      "@contacts/contacts/feature-detail": ["libs/contacts/feature-detail/src/index.ts"],
+      "@contacts/common/utils": ["libs/common/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

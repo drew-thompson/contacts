@@ -12,15 +12,8 @@ import { first } from 'rxjs/operators';
 export class AppComponent {
   hello$: Observable<Message>;
 
-  constructor(
-    private appRef: ApplicationRef,
-    private fns: AngularFireFunctions
-  ) {
+  constructor(private appRef: ApplicationRef, private fns: AngularFireFunctions) {
     // Prevent app from becoming unstable by delaying Firebase functions call
-    this.appRef.isStable.pipe(first(stable => stable)).subscribe(() => {
-      console.log('App is stable now');
-      const hello = this.fns.httpsCallable('api/hello');
-      this.hello$ = hello({ name: 'bob' }) as Observable<Message>;
-    });
+    this.appRef.isStable.pipe(first(stable => stable)).subscribe(() => console.log('App is stable now'));
   }
 }

@@ -9,16 +9,13 @@ import * as express from 'express';
 import { Express } from 'express';
 import * as functions from 'firebase-functions';
 import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
 const server = express();
 
 export const bootstrap = async (expressInstance: Express) => {
-  const app = await NestFactory.create(
-    AppModule,
-    new ExpressAdapter(expressInstance),
-    { cors: true }
-  );
-  const globalPrefix = 'h2o-challenge/us-central1/api';
+  const app = await NestFactory.create(AppModule, new ExpressAdapter(expressInstance), { cors: true });
+  const globalPrefix = environment.production ? 'h2o-challenge/us-central1/api' : 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.port || 3333;
   return (await app.init()).listen(port);

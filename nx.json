@@ -43,6 +43,9 @@
     },
     "contacts-feature-detail": {
       "tags": ["platform:frontend", "type:feature"]
+    },
+    "common-utils": {
+      "tags": ["platform:frontend", "type:util"]
     }
   }
 }

@@ -17,4 +17,14 @@ export class AppController {
   fakerPost(): { data: Message } {
     return { data: this.appService.getData() };
   }
+
+  @Get('contacts')
+  getContacts(): { data: Message } {
+    return { data: this.appService.getData() };
+  }
+
+  @Post('contacts')
+  postContacts(): { data: Message } {
+    return { data: this.appService.getData() };
+  }
 }

@@ -1,0 +1,13 @@
+$toolbar-height: 4rem;
+mat-toolbar.mat-toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: $toolbar-height;
+	z-index: 10;
+}
+
+mat-sidenav-container.mat-sidenav-container {
+	height: 100vh;
+	margin-top: $toolbar-height;
+}

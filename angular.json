@@ -395,6 +395,28 @@
           "styleext": "scss"
         }
       }
+    },
+    "common-utils": {
+      "root": "libs/common/utils",
+      "sourceRoot": "libs/common/utils/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["libs/common/utils/tsconfig.lib.json", "libs/common/utils/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/utils/jest.config.js",
+            "tsConfig": "libs/common/utils/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

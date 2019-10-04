@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { Contact } from '@contacts/api-interface';
+import { ContactsService } from '@contacts/contacts/data-access';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'contacts-listing',
@@ -9,15 +12,18 @@ import { MatSidenav } from '@angular/material';
 })
 export class ListingComponent implements OnInit {
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
+  /** Whether the user is viewing the contacts listing. */
+  isViewingListing = true;
+  contacts$: Observable<Contact[]>;
 
-  viewingMenu = true;
+  constructor(private contactsService: ContactsService) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.contacts$ = this.contactsService.getContacts();
+  }
 
   toggleSidenav(): void {
     this.sidenav.toggle();
-    this.viewingMenu = this.sidenav.opened;
+    this.isViewingListing = this.sidenav.opened;
   }
 }

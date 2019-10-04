@@ -10,5 +10,6 @@ export const environment = {
     appId: '1:668628369193:web:a1c60a03adcb94d332c138',
     measurementId: 'G-GB08SN9BFR'
   },
-  apiOrigin: 'https://h2o-challenge.web.app'
+  apiOrigin: 'https://h2o-challenge.web.app',
+  apiBase: 'h2o-challenge/us-central1'
 };

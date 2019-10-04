@@ -1,15 +1,17 @@
 <mat-toolbar>
   <button (click)="toggleSidenav()" mat-icon-button>
-    <mat-icon>menu{{ viewingMenu ? '_open' : '' }}</mat-icon>
+    <mat-icon>menu{{ isViewingListing ? '_open' : '' }}</mat-icon>
   </button>
 </mat-toolbar>
 
 <div class="container-fluid">
   <mat-sidenav-container class="row">
-    <mat-sidenav opened mode="side" class="col-12 col-sm-4">
+    <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4">
       <p>
         listing works!
       </p>
+
+      <pre>{{ contacts$ | async | json }}</pre>
     </mat-sidenav>
     <mat-sidenav-content class="col-12 col-sm">
       <router-outlet></router-outlet>
