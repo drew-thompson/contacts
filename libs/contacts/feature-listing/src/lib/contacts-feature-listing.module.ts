@@ -14,12 +14,15 @@ import { ListingComponent } from './listing/listing.component';
     RouterModule.forChild([
       {
         path: '',
-        pathMatch: 'full',
         component: ListingComponent,
         children: [
           {
-            path: '',
+            path: ':id',
             loadChildren: () => import('@contacts/contacts/feature-detail').then(m => m.ContactsFeatureDetailModule)
+          },
+          {
+            path: ':id/edit',
+            loadChildren: () => import('@contacts/contacts/feature-edit').then(m => m.ContactsFeatureEditModule)
           }
         ]
       }

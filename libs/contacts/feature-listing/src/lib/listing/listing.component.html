@@ -7,6 +7,7 @@
 <div class="container-fluid">
   <mat-sidenav-container class="row">
     <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4">
+      <a routerLink="/contacts">Contacts Home</a>
       <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
       <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
 
@@ -14,16 +15,22 @@
       <ul>
         <mat-list>
           <ng-container *ngFor="let record of mockTacts; let i=index">
-            <contacts-record (click)="selectedIndex = i" [routerLink]="['contacts', i]" [contact]="record"
-              [class.selected]="selectedIndex === i">
+            <contacts-record (click)="onContactSelected(i)" [contact]="record" [class.selected]="selectedIndex === i">
             </contacts-record>
           </ng-container>
         </mat-list>
       </ul>
 
     </mat-sidenav>
-    <mat-sidenav-content class="col-12 col-sm">
-      <router-outlet></router-outlet>
+    <mat-sidenav-content class="col-12 col-sm-8">
+      <ng-container *ngIf="!isViewingContact">
+        <header class="my-5 mat-typography text-center">
+          <h1>Select a Contact</h1>
+          <h2>Why haven't you selected someone yet?</h2>
+        </header>
+      </ng-container>
+
+      <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

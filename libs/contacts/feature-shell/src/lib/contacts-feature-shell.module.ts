@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: '',
-        pathMatch: 'full',
         loadChildren: () => import('@contacts/contacts/feature-listing').then(m => m.ContactsFeatureListingModule)
       }
     ])
