@@ -78,7 +78,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/contacts/tsconfig.app.json", "apps/contacts/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/contacts/**"]
           }
         },
         "test": {
@@ -112,7 +112,10 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/contacts-e2e/tsconfig.e2e.json"
+            "tsConfig": "apps/contacts-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "!apps/contacts-e2e/**"
+            ]
           }
         }
       }
@@ -156,7 +159,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["apps/api/tsconfig.app.json", "apps/api/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!apps/api/**"]
           }
         },
         "test": {
@@ -178,7 +181,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/api-interface/tsconfig.lib.json", "libs/api-interface/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/api-interface/**"]
           }
         },
         "test": {
@@ -200,7 +203,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/common/styles/tsconfig.lib.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/common/styles/**"]
           }
         }
       }
@@ -215,7 +218,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/common/material/tsconfig.lib.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/common/material/**"]
           }
         }
       },
@@ -235,7 +238,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/contacts/ui/tsconfig.lib.json", "libs/contacts/ui/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/ui/**"]
           }
         },
         "test": {
@@ -266,7 +269,7 @@
               "libs/contacts/feature-shell/tsconfig.lib.json",
               "libs/contacts/feature-shell/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/feature-shell/**"]
           }
         },
         "test": {
@@ -297,7 +300,7 @@
               "libs/contacts/feature-listing/tsconfig.lib.json",
               "libs/contacts/feature-listing/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/feature-listing/**"]
           }
         },
         "test": {
@@ -325,7 +328,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/contacts/data-access/tsconfig.lib.json", "libs/contacts/data-access/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/data-access/**"]
           }
         },
         "test": {
@@ -353,7 +356,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/contacts/utils/tsconfig.lib.json", "libs/contacts/utils/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/utils/**"]
           }
         },
         "test": {
@@ -378,7 +381,7 @@
               "libs/contacts/feature-detail/tsconfig.lib.json",
               "libs/contacts/feature-detail/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/feature-detail/**"]
           }
         },
         "test": {
@@ -406,7 +409,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["libs/common/utils/tsconfig.lib.json", "libs/common/utils/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/common/utils/**"]
           }
         },
         "test": {
@@ -431,7 +434,7 @@
               "libs/contacts/feature-edit/tsconfig.lib.json",
               "libs/contacts/feature-edit/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": ["**/node_modules/**", "!libs/contacts/feature-edit/**"]
           }
         },
         "test": {
