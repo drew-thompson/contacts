@@ -417,6 +417,37 @@
           }
         }
       }
+    },
+    "contacts-feature-edit": {
+      "projectType": "library",
+      "root": "libs/contacts/feature-edit",
+      "sourceRoot": "libs/contacts/feature-edit/src",
+      "prefix": "contacts",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/contacts/feature-edit/tsconfig.lib.json",
+              "libs/contacts/feature-edit/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/contacts/feature-edit/jest.config.js",
+            "tsConfig": "libs/contacts/feature-edit/tsconfig.spec.json",
+            "setupFile": "libs/contacts/feature-edit/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
