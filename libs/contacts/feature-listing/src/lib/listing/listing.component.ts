@@ -2,15 +2,15 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } 
 import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from '@contacts/api-interface';
-import { ContactsService } from '@contacts/contacts/data-access';
+import { ContactsFacade } from '@contacts/contacts/data-access';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'contacts-listing',
   templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./listing.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListingComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav, { static: true }) sidenav: MatSidenav;
@@ -23,30 +23,10 @@ export class ListingComponent implements OnInit, AfterViewInit {
   /** Index of the selected contact. */
   selectedIndex: number;
 
-  contacts$: Observable<Contact[]>;
-  mockTacts: Contact[] = [
-    {
-      address: '99 Weiland Way<br/>Cupertino CA 95014<br/>UnitedStates',
-      email: 'adam.acer@gmail.com',
-      nameFirst: 'Adam',
-      nameLast: 'Acer',
-      notes: "Adam's California Address",
-      phone: '3996927753'
-    },
-    {
-      address: '99 Weiland Way<br/>Cupertino CA 95014<br/>UnitedStates',
-      email: 'bob@saget.com',
-      nameFirst: 'Bob',
-      nameLast: 'Saget',
-      notes: "Can't tell if he's a nice guy",
-      phone: '1238675309'
-    }
-  ];
-
-  constructor(private router: Router, private route: ActivatedRoute, private contactsService: ContactsService) {}
+  constructor(private router: Router, private route: ActivatedRoute, public contactsFacade: ContactsFacade) {}
 
   ngOnInit() {
-    this.contacts$ = this.contactsService.getContacts();
+    this.contactsFacade.loadAll();
   }
 
   ngAfterViewInit() {

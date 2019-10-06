@@ -14,15 +14,17 @@
       <!-- <pre>{{ contacts$ | async | json }}</pre> -->
       <ul>
         <mat-list>
-          <ng-container *ngFor="let record of mockTacts; let i=index">
-            <contacts-record (click)="onContactSelected(i)" [contact]="record" [class.selected]="selectedIndex === i">
-            </contacts-record>
+          <ng-container *ngIf=" contactsFacade.allContacts$ | async as records">
+            <ng-container *ngFor="let record of records; let i=index">
+              <contacts-record (click)="onContactSelected(i)" [contact]="record" [class.selected]="selectedIndex === i">
+              </contacts-record>
+            </ng-container>
           </ng-container>
         </mat-list>
       </ul>
 
     </mat-sidenav>
-    <mat-sidenav-content class="col-12 col-sm-8">
+    <mat-sidenav-content [class.col-sm-8]="isViewingListing" class="col-12">
       <ng-container *ngIf="!isViewingContact">
         <header class="my-5 mat-typography text-center">
           <h1>Select a Contact</h1>

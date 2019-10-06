@@ -9,7 +9,15 @@ mat-toolbar.mat-toolbar {
 
 mat-sidenav-container.mat-sidenav-container {
 	height: 100vh;
-	margin-top: $toolbar-height;
+}
+
+mat-sidenav.mat-sidenav,
+mat-sidenav-content.mat-sidenav-content {
+	padding-top: $toolbar-height;
+}
+
+mat-sidenav-content.mat-sidenav-content {
+	transition: 250ms;
 }
 
 ul {
