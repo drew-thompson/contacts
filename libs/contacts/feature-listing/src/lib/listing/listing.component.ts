@@ -1,10 +1,8 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Contact } from '@contacts/api-interface';
-import { ContactsService } from '@contacts/contacts/data-access';
-import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { ContactsEntity, ContactsFacade } from '@contacts/contacts/data-access';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'contacts-listing',
@@ -21,60 +19,30 @@ export class ListingComponent implements OnInit, AfterViewInit {
   /** Whether the user is editing the selected contact. */
   isEditing = false;
   /** Index of the selected contact. */
-  selectedIndex: number;
+  selectedId: string | number;
 
-  contacts$: Observable<Contact[]>;
-  mockTacts: Contact[] = [
-    {
-      address: '99 Weiland Way<br/>Cupertino CA 95014<br/>UnitedStates',
-      email: 'adam.acer@gmail.com',
-      nameFirst: 'Adam',
-      nameLast: 'Acer',
-      notes: "Adam's California Address",
-      phone: '3996927753'
-    },
-    {
-      address: '99 Weiland Way<br/>Cupertino CA 95014<br/>UnitedStates',
-      email: 'bob@saget.com',
-      nameFirst: 'Bob',
-      nameLast: 'Saget',
-      notes: "Can't tell if he's a nice guy",
-      phone: '1238675309'
-    }
-  ];
+  private childRouteSubscription: Subscription;
 
-  constructor(private router: Router, private route: ActivatedRoute, private contactsService: ContactsService) {}
+  constructor(private router: Router, private route: ActivatedRoute, public contactsFacade: ContactsFacade) {}
 
   ngOnInit() {
-    this.contacts$ = this.contactsService.getContacts();
+    this.contactsFacade.loadAll();
   }
 
-  ngAfterViewInit() {
-    const child = this.route.firstChild;
-    if (child) {
-      // Initialize selected index on direct navigation
-      child.paramMap.pipe(first()).subscribe(paramMap => {
-        const id = paramMap.get('id');
-        if (id !== null) {
-          this.selectedIndex = parseInt(id, 10) - 1;
-        }
-      });
-    }
-  }
+  ngAfterViewInit() {}
 
-  onActivate(event: any): void {
-    console.log(event);
+  onActivate(_event: any): void {
+    this.handleRouteChanges();
     this.isViewingContact = true;
   }
 
-  onDeactivate(event: any): void {
-    console.log(event);
+  onDeactivate(_event: any): void {
+    this.contactsFacade.deselect();
     this.isViewingContact = false;
   }
 
-  onContactSelected(index: number): void {
-    this.selectedIndex = index;
-    this.navigateToDetail(index);
+  onContactSelected(contact: ContactsEntity): void {
+    this.navigateToDetail(contact.id);
   }
 
   /**
@@ -100,10 +68,27 @@ export class ListingComponent implements OnInit, AfterViewInit {
   }
 
   hasContactSelected(): boolean {
-    return this.selectedIndex !== undefined;
+    return this.selectedId !== undefined;
   }
 
-  navigateToDetail(index: number): void {
-    this.router.navigate(['contacts', index + 1]);
+  navigateToDetail(id: string | number): void {
+    this.router.navigate(['contacts', id]);
+  }
+
+  private handleRouteChanges(): void {
+    const child = this.route.firstChild;
+    if (this.childRouteSubscription) {
+      this.childRouteSubscription.unsubscribe();
+    }
+
+    if (child) {
+      this.childRouteSubscription = child.paramMap.subscribe(paramMap => {
+        const id = paramMap.get('id');
+        if (id !== null) {
+          this.contactsFacade.select(id);
+          this.selectedId = id;
+        }
+      });
+    }
   }
 }

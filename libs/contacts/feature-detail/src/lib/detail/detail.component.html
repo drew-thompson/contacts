@@ -1,3 +1,15 @@
-<p>
-  detail works!
-</p>
+<article class="container-fluid">
+  <div class="row pt-4">
+
+    <ng-container *ngIf="contactsFacade.selectedContact$ | async as contact">
+      <header class="col-12">
+        <h3 class="first-name">{{ contact.nameFirst }}</h3>
+        <h3 class="last-name">{{ contact.nameLast }}</h3>
+      </header>
+
+      <pre class="col-12">{{ contact | json }}</pre>
+
+    </ng-container>
+
+  </div>
+</article>
