@@ -26,7 +26,8 @@
       "@contacts/contacts/utils": ["libs/contacts/utils/src/index.ts"],
       "@contacts/contacts/feature-detail": ["libs/contacts/feature-detail/src/index.ts"],
       "@contacts/common/utils": ["libs/common/utils/src/index.ts"],
-      "@contacts/contacts/feature-edit": ["libs/contacts/feature-edit/src/index.ts"]
+      "@contacts/contacts/feature-edit": ["libs/contacts/feature-edit/src/index.ts"],
+      "@contacts/router/data-access": ["libs/router/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

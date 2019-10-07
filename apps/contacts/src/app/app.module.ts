@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonMaterialModule } from '@contacts/common/material';
 import { ApiHttpInterceptor, ENVIRONMENT } from '@contacts/common/utils';
+import { RouterDataAccessModule, routerReducers } from '@contacts/router/data-access';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
@@ -29,18 +30,18 @@ import { AppComponent } from './app.component';
     AngularFirePerformanceModule,
     AppRoutingModule,
     CommonMaterialModule,
+    RouterDataAccessModule,
     NxModule.forRoot(),
-    StoreModule.forRoot(
-      {},
-      {
-        metaReducers: !environment.production ? [] : [],
-        runtimeChecks: {
-          strictStateImmutability: true,
-          strictActionImmutability: true
-        }
+    StoreModule.forRoot(routerReducers, {
+      metaReducers: !environment.production ? [] : [],
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
       }
-    ),
-    StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
+    }),
+    StoreRouterConnectingModule.forRoot({
+      routerState: RouterState.Minimal
+    }),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],

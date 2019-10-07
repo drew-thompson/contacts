@@ -49,6 +49,9 @@
     },
     "contacts-feature-edit": {
       "tags": ["platform:frontend", "type:feature"]
+    },
+    "router-data-access": {
+      "tags": ["platform:frontend", "type:data-access"]
     }
   }
 }
