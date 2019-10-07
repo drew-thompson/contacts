@@ -450,34 +450,6 @@
         }
       }
     },
-    "core-data-access": {
-      "projectType": "library",
-      "root": "libs/core/data-access",
-      "sourceRoot": "libs/core/data-access/src",
-      "prefix": "contacts",
-      "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["libs/core/data-access/tsconfig.lib.json", "libs/core/data-access/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**", "!libs/core/data-access/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/core/data-access/jest.config.js",
-            "tsConfig": "libs/core/data-access/tsconfig.spec.json",
-            "setupFile": "libs/core/data-access/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "router-data-access": {
       "projectType": "library",
       "root": "libs/router/data-access",
