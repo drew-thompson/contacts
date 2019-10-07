@@ -71,6 +71,10 @@ export class ListingComponent implements OnInit, AfterViewInit {
     return this.selectedId !== undefined;
   }
 
+  isSelected(record: ContactsEntity): boolean {
+    return record.id === this.selectedId;
+  }
+
   navigateToDetail(id: string | number): void {
     this.router.navigate(['contacts', id]);
   }

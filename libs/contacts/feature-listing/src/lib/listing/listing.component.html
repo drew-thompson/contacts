@@ -15,11 +15,10 @@
         <ul>
           <ng-container *ngIf="contactsFacade.allContacts$ | async as records">
             <ng-container *ngFor="let record of records; let i=index">
-              <li>
-                <contacts-record (click)="onContactSelected(record)" [contact]="record"
-                  [class.selected]="record.id === selectedId">
+              <button (click)="onContactSelected(record)" tabindex="0" class="clear">
+                <contacts-record [contact]="record" [class.selected]="isSelected(record)">
                 </contacts-record>
-              </li>
+              </button>
             </ng-container>
           </ng-container>
         </ul>

@@ -11,12 +11,14 @@ import { InjectionToken } from '@angular/core';
  */
 export const ENVIRONMENT = new InjectionToken<string>('environment');
 
-export function getHash(value: string): number {
+export function getHash(value: string): string {
   let hash = 0;
-  for (var i = 0; i < value.length; i++) {
-    var character = value.charCodeAt(i);
+  for (let i = 0; i < value.length; i++) {
+    const character = value.charCodeAt(i);
+    // tslint:disable-next-line: no-bitwise
     hash = (hash << 5) - hash + character;
+    // tslint:disable-next-line: no-bitwise
     hash = hash & hash; // Convert to 32bit integer
   }
-  return hash;
+  return hash.toString();
 }
