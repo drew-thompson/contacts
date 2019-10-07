@@ -9,3 +9,7 @@ export const loadContactsSuccess = createAction(
 );
 
 export const loadContactsFailure = createAction('[Contacts] Load Contacts Failure', props<{ error: any }>());
+
+export const selectContact = createAction('[Contacts] Select Contact', props<{ selectedId: string | number }>());
+
+export const deselectContact = createAction('[Contacts] Deselect Contact');

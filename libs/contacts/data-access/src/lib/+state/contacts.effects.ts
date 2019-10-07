@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { ContactsService } from '../contacts.service';
 import * as ContactsActions from './contacts.actions';
 import { ContactsPartialState } from './contacts.reducer';
+import { getHash } from '@contacts/common/utils';
 
 @Injectable()
 export class ContactsEffects {
@@ -18,7 +19,7 @@ export class ContactsEffects {
               throw new Error('Contacts could not be loaded.');
             }
             return ContactsActions.loadContactsSuccess({
-              contacts: contacts.map((c, i) => ({ ...c, id: i + 1 }))
+              contacts: contacts.map((c, id) => ({ ...c, id: getHash(JSON.stringify(c)) }))
             });
           })
         );

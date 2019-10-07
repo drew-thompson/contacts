@@ -11,17 +11,19 @@
       <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
       <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
 
-      <!-- <pre>{{ contacts$ | async | json }}</pre> -->
-      <ul>
-        <mat-list>
-          <ng-container *ngIf=" contactsFacade.allContacts$ | async as records">
+      <mat-list>
+        <ul>
+          <ng-container *ngIf="contactsFacade.allContacts$ | async as records">
             <ng-container *ngFor="let record of records; let i=index">
-              <contacts-record (click)="onContactSelected(i)" [contact]="record" [class.selected]="selectedIndex === i">
-              </contacts-record>
+              <li>
+                <contacts-record (click)="onContactSelected(record)" [contact]="record"
+                  [class.selected]="record.id === selectedId">
+                </contacts-record>
+              </li>
             </ng-container>
           </ng-container>
-        </mat-list>
-      </ul>
+        </ul>
+      </mat-list>
 
     </mat-sidenav>
     <mat-sidenav-content [class.col-sm-8]="isViewingListing" class="col-12">

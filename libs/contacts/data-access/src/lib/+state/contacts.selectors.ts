@@ -18,10 +18,7 @@ export const getContactsError = createSelector(
 
 export const getAllContacts = createSelector(
   getContactsState,
-  (state: ContactsState) => {
-    console.log(state);
-    return selectAll(state);
-  }
+  (state: ContactsState) => selectAll(state)
 );
 
 export const getContactsEntities = createSelector(
@@ -38,4 +35,9 @@ export const getSelected = createSelector(
   getContactsEntities,
   getSelectedId,
   (entities, selectedId) => selectedId && entities[selectedId]
+);
+
+export const getIsSelectedContact = createSelector(
+  getSelectedId,
+  (id: string | number, props: string | number) => id === props
 );

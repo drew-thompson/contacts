@@ -1,0 +1,10 @@
+h3 {
+	&.first-name,
+	&.last-name {
+		display: inline-block;
+	}
+
+	&.first-name {
+		margin-right: 0.5rem;
+	}
+}

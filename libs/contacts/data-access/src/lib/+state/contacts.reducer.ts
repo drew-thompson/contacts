@@ -28,7 +28,9 @@ const contactsReducer = createReducer(
   on(ContactsActions.loadContactsSuccess, (state, { contacts }) =>
     contactsAdapter.addAll(contacts, { ...state, loaded: true })
   ),
-  on(ContactsActions.loadContactsFailure, (state, { error }) => ({ ...state, error }))
+  on(ContactsActions.loadContactsFailure, (state, { error }) => ({ ...state, error })),
+  on(ContactsActions.selectContact, (state, { selectedId }) => ({ ...state, selectedId })),
+  on(ContactsActions.deselectContact, state => ({ ...state, selectedId: undefined }))
 );
 
 export function reducer(state: ContactsState | undefined, action: Action) {

@@ -8,11 +8,20 @@ import * as ContactsSelectors from './contacts.selectors';
 export class ContactsFacade {
   loaded$ = this.store.pipe(select(ContactsSelectors.getContactsLoaded));
   allContacts$ = this.store.pipe(select(ContactsSelectors.getAllContacts));
-  selectedContacts$ = this.store.pipe(select(ContactsSelectors.getSelected));
+  selectedContact$ = this.store.pipe(select(ContactsSelectors.getSelected));
+  selectedId$ = this.store.pipe(select(ContactsSelectors.getSelectedId));
 
   constructor(private store: Store<fromContacts.ContactsPartialState>) {}
 
   loadAll() {
     this.store.dispatch(ContactsActions.loadContacts());
+  }
+
+  select(selectedId: string | number): void {
+    this.store.dispatch(ContactsActions.selectContact({ selectedId }));
+  }
+
+  deselect(): void {
+    this.store.dispatch(ContactsActions.deselectContact());
   }
 }
