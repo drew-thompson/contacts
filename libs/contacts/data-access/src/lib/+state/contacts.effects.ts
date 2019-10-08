@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { getHash } from '@contacts/common/utils';
 import { Actions, createEffect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/angular';
 import { map } from 'rxjs/operators';
 import { ContactsService } from '../contacts.service';
 import * as ContactsActions from './contacts.actions';
 import { ContactsPartialState } from './contacts.reducer';
-import { getHash } from '@contacts/common/utils';
 
 @Injectable()
 export class ContactsEffects {
@@ -19,7 +19,7 @@ export class ContactsEffects {
               throw new Error('Contacts could not be loaded.');
             }
             return ContactsActions.loadContactsSuccess({
-              contacts: contacts.map((c, id) => ({ ...c, id: getHash(JSON.stringify(c)) }))
+              contacts: contacts.map((c, id) => ({ ...c, id: getHash(JSON.stringify({ ...c, id })) }))
             });
           })
         );
