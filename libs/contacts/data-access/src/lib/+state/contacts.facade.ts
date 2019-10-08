@@ -8,6 +8,8 @@ import * as ContactsSelectors from './contacts.selectors';
 export class ContactsFacade {
   loaded$ = this.store.pipe(select(ContactsSelectors.getContactsLoaded));
   allContacts$ = this.store.pipe(select(ContactsSelectors.getAllContacts));
+  /** All contacts sorted and separated into alphabetical groups. */
+  allContactsGroups$ = this.store.pipe(select(ContactsSelectors.getAllContactsGroups));
   selectedContact$ = this.store.pipe(select(ContactsSelectors.getSelected));
   selectedId$ = this.store.pipe(select(ContactsSelectors.getSelectedId));
 
