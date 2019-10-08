@@ -19,7 +19,7 @@ export class ContactsEffects {
               throw new Error('Contacts could not be loaded.');
             }
             return ContactsActions.loadContactsSuccess({
-              contacts: contacts.map((c, id) => ({ ...c, id: getHash(JSON.stringify({ ...c, id })) }))
+              contacts: contacts.map((c, id) => ({ ...c, id: getHash(JSON.stringify({ ...c, id })).replace('-', '') }))
             });
           })
         );

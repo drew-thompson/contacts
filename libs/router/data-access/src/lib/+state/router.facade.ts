@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as fromRouter from './router.reducer';
 
 @Injectable()
@@ -12,5 +13,9 @@ export class RouterFacade {
 
   getQueryParam(key: string): Observable<string> {
     return this.store.select(fromRouter.selectQueryParam(key));
+  }
+
+  urlHasSegment(key: string): Observable<boolean> {
+    return this.store.pipe(select(fromRouter.selectUrl)).pipe(map(url => url.includes(key)));
   }
 }

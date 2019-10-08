@@ -3,7 +3,8 @@ import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceEvent } from '@contacts/common/utils';
 import { ContactsEntity, ContactsFacade } from '@contacts/contacts/data-access';
-import { Subscription } from 'rxjs';
+import { RouterFacade } from '@contacts/router/data-access';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'contacts-listing',
@@ -17,19 +18,26 @@ export class ListingComponent implements OnInit, AfterViewInit {
   isViewingListing = true;
   /** Whether the user is viewing a selected contact. */
   isViewingContact = false;
-  /** Whether the user is editing the selected contact. */
-  isEditing = false;
   /** Index of the selected contact. */
   selectedId: string | number;
+
+  /** Whether the user is editing a contact. */
+  isEditing$: Observable<boolean>;
 
   private childRouteSubscription: Subscription;
   private readonly breakpoint = 600;
   private lastWidth = window.innerWidth;
 
-  constructor(private router: Router, private route: ActivatedRoute, public contactsFacade: ContactsFacade) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private routerFacade: RouterFacade,
+    public contactsFacade: ContactsFacade
+  ) {}
 
   ngOnInit() {
     this.contactsFacade.loadAll();
+    this.isEditing$ = this.routerFacade.urlHasSegment('edit');
   }
 
   ngAfterViewInit() {}
@@ -41,6 +49,7 @@ export class ListingComponent implements OnInit, AfterViewInit {
 
   onDeactivate(_event: any): void {
     this.contactsFacade.deselect();
+    this.selectedId = undefined;
     this.isViewingContact = false;
   }
 
@@ -62,20 +71,6 @@ export class ListingComponent implements OnInit, AfterViewInit {
     }
 
     this.lastWidth = width;
-  }
-
-  /**
-   * Toggle whether the user is editing a contact.
-   *
-   * @description
-   * Will only set `isEditing` to `true` if a contact is currently selected.
-   */
-  toggleEditing(): void {
-    if (this.hasContactSelected() && !this.isEditing) {
-      this.isEditing = true;
-    } else {
-      this.isEditing = false;
-    }
   }
 
   /**
