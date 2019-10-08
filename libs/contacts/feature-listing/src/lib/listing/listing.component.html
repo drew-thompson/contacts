@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
   <mat-sidenav-container class="row">
-    <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4">
+    <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4 col-md-3">
       <a routerLink="/contacts">Contacts Home</a>
       <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
       <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
@@ -14,7 +14,7 @@
       <ng-container *ngTemplateOutlet="contacts"></ng-container>
 
     </mat-sidenav>
-    <mat-sidenav-content [class.col-sm-12]="!isViewingListing" class="col-12 col-sm-8">
+    <mat-sidenav-content [class.col-sm-12]="!isViewingListing" class="col-12 col-sm-8 col-md-9">
       <ng-container *ngTemplateOutlet="detail"></ng-container>
     </mat-sidenav-content>
   </mat-sidenav-container>

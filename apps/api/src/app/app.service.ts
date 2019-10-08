@@ -21,8 +21,8 @@ const mockTacts: Contact[] = [
   {
     address: '',
     email: '',
-    nameFirst: 'Abb',
-    nameLast: 'Some',
+    nameFirst: 'Someone',
+    nameLast: 'Cool',
     notes: '',
     phone: ''
   },
@@ -37,8 +37,32 @@ const mockTacts: Contact[] = [
   {
     address: '',
     email: '',
-    nameFirst: 'Cat',
-    nameLast: 'Tongue',
+    nameFirst: 'Clementine',
+    nameLast: 'Cat',
+    notes: '',
+    phone: ''
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Leon',
+    nameLast: 'Merrigold',
+    notes: '',
+    phone: ''
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Jasmine',
+    nameLast: 'Pringle',
+    notes: '',
+    phone: ''
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Michael',
+    nameLast: 'Scott',
     notes: '',
     phone: ''
   }

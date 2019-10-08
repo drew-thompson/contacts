@@ -24,6 +24,7 @@ export class ListingComponent implements OnInit, AfterViewInit {
 
   private childRouteSubscription: Subscription;
   private readonly breakpoint = 600;
+  private lastWidth = window.innerWidth;
 
   constructor(private router: Router, private route: ActivatedRoute, public contactsFacade: ContactsFacade) {}
 
@@ -48,13 +49,19 @@ export class ListingComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize')
-  @debounceEvent()
+  @debounceEvent(100)
   onWindowResize(): void {
     const width = window.innerWidth;
+    const isShrinking = window.innerWidth < this.lastWidth;
     const shouldClose = this.isViewingContact && this.isViewingListing && width < this.breakpoint;
-    if (shouldClose) {
+    const shouldOpen =
+      !this.sidenav.opened && (this.isViewingContact || this.isViewingListing) && width > this.breakpoint;
+
+    if ((isShrinking && shouldClose) || (!isShrinking && shouldOpen)) {
       this.toggleSidenav();
     }
+
+    this.lastWidth = width;
   }
 
   /**
