@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar id="navigation">
   <button (click)="toggleSidenav()" mat-icon-button>
     <mat-icon>menu{{ isViewingListing ? '_open' : '' }}</mat-icon>
   </button>
@@ -8,18 +8,17 @@
   <mat-sidenav-container class="row">
     <mat-sidenav [opened]="isViewingListing" mode="side" class="col-12 col-sm-4 col-md-3">
       <a routerLink="/contacts">Contacts Home</a>
-      <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
-      <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
+      <p>Is {{ !(isEditing$ | async) ? 'Not ' : '' }} Editing</p>
 
       <ng-container *ngTemplateOutlet="contacts"></ng-container>
 
     </mat-sidenav>
-    <mat-sidenav-content [class.col-sm-12]="!isViewingListing" class="col-12 col-sm-8 col-md-9">
+    <mat-sidenav-content [ngClass]="{'col-sm-12 col-md-12': !isViewingListing}" class="col-12 col-sm-8 col-md-9">
       <ng-container *ngTemplateOutlet="detail"></ng-container>
+      <ng-container *ngTemplateOutlet="controls"></ng-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
 
 <ng-template #contacts>
   <mat-list>
@@ -48,4 +47,11 @@
   </ng-container>
 
   <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+</ng-template>
+
+<ng-template #controls>
+  <mat-toolbar id="controls">
+    <button>+</button>
+    <button>Done</button>
+  </mat-toolbar>
 </ng-template>

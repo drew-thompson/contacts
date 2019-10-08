@@ -1,3 +1,43 @@
-<p>
-  edit works!
-</p>
+<article class="container-fluid">
+
+  <ng-container *ngTemplateOutlet="name"></ng-container>
+
+  <div class="row">
+    <div class="offset-sm-1 col-6">
+      <ng-container *ngTemplateOutlet="address"></ng-container>
+    </div>
+    <div class="col-12">
+      <hr>
+    </div>
+    <div class="offset-sm-1 col-6">
+      hi
+    </div>
+  </div>
+</article>
+
+<ng-template #name>
+  <div id="name-row" class="row no-gutters">
+    <div class="col-12 col-sm-4 col-md-3 mr-sm-2">
+      <div class="input-container">
+        <input id="first-name" type="text" class="first-name">
+        <label for="first-name">first name</label>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-4 col-md-3">
+      <div class="input-container">
+        <input id="last-name" type="text" class="last-name">
+        <label for="last-name">last name</label>
+      </div>
+    </div>
+
+    <div class="offset-sm-4 offset-md-6"></div>
+  </div>
+</ng-template>
+
+<ng-template #address>
+  <div class="input-container float-label">
+    <label for="address">address</label>
+    <input type="text">
+  </div>
+</ng-template>

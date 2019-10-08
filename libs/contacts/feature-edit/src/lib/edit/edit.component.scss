@@ -1,0 +1,11 @@
+@import 'contacts';
+
+#name-row {
+	margin-bottom: 5rem;
+}
+
+article {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}

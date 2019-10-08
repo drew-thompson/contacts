@@ -1,0 +1,11 @@
+$size: 2rem;
+.first-name,
+.last-name {
+	display: inline-block;
+	font-size: $size;
+	height: $size + 1rem;
+}
+
+.first-name {
+	margin-right: 0.5rem;
+}

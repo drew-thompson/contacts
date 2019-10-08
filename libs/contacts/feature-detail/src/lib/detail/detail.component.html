@@ -1,5 +1,5 @@
 <article class="container-fluid">
-  <div class="row pt-4">
+  <div class="row">
 
     <ng-container *ngIf="contactsFacade.selectedContact$ | async as contact">
       <header class="col-12">
@@ -8,6 +8,8 @@
       </header>
 
       <pre class="col-12">{{ contact | json }}</pre>
+
+      <a routerLink="edit">Edit</a>
 
     </ng-container>
 

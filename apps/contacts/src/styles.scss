@@ -48,7 +48,8 @@ body {
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-button {
+button,
+input {
 	&:focus,
 	&:active {
 		outline-width: 2px;
