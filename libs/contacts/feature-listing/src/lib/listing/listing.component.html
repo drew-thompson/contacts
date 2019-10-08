@@ -11,29 +11,42 @@
       <p>Is {{ !isEditing ? 'Not ' : '' }} Editing</p>
       <button (click)="toggleEditing()" mat-button type="button">Toggle Editing</button>
 
-      <mat-list>
-        <ul>
-          <ng-container *ngIf="contactsFacade.allContacts$ | async as records">
-            <ng-container *ngFor="let record of records; let i=index">
-              <button (click)="onContactSelected(record)" tabindex="0" class="clear">
-                <contacts-record [contact]="record" [class.selected]="isSelected(record)">
-                </contacts-record>
-              </button>
-            </ng-container>
-          </ng-container>
-        </ul>
-      </mat-list>
+      <ng-container *ngTemplateOutlet="contacts"></ng-container>
 
     </mat-sidenav>
     <mat-sidenav-content [class.col-sm-8]="isViewingListing" class="col-12">
-      <ng-container *ngIf="!isViewingContact">
-        <header class="my-5 mat-typography text-center">
-          <h1>Select a Contact</h1>
-          <h2>Why haven't you selected someone yet?</h2>
-        </header>
-      </ng-container>
-
-      <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+      <ng-container *ngTemplateOutlet="detail"></ng-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+
+<ng-template #contacts>
+  <mat-list>
+    <ul>
+      <ng-container *ngIf="contactsFacade.allContactsGroups$ | async as groups">
+        <ng-container *ngFor="let group of groups">
+          <h3 matSubheader>{{ getSubheader(group) }}</h3>
+          <hr>
+          <ng-container *ngFor="let record of group">
+            <button (click)="onContactSelected(record)" tabindex="0" class="clear">
+              <contacts-record [contact]="record" [class.selected]="isSelected(record)">
+              </contacts-record>
+            </button>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </mat-list>
+</ng-template>
+
+<ng-template #detail>
+  <ng-container *ngIf="!isViewingContact">
+    <header class="my-5 mat-typography text-center">
+      <h1>Select a Contact</h1>
+      <h2>Why haven't you selected someone yet?</h2>
+    </header>
+  </ng-container>
+
+  <router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+</ng-template>

@@ -17,6 +17,30 @@ const mockTacts: Contact[] = [
     nameLast: 'Saget',
     notes: "Can't tell if he's a nice guy",
     phone: '1238675309'
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Abb',
+    nameLast: 'Some',
+    notes: '',
+    phone: ''
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Cat',
+    nameLast: '',
+    notes: '',
+    phone: ''
+  },
+  {
+    address: '',
+    email: '',
+    nameFirst: 'Cat',
+    nameLast: 'Tongue',
+    notes: '',
+    phone: ''
   }
 ];
 

@@ -1,6 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceEvent } from '@contacts/common/utils';
 import { ContactsEntity, ContactsFacade } from '@contacts/contacts/data-access';
 import { Subscription } from 'rxjs';
 
@@ -22,6 +23,7 @@ export class ListingComponent implements OnInit, AfterViewInit {
   selectedId: string | number;
 
   private childRouteSubscription: Subscription;
+  private readonly breakpoint = 600;
 
   constructor(private router: Router, private route: ActivatedRoute, public contactsFacade: ContactsFacade) {}
 
@@ -43,6 +45,16 @@ export class ListingComponent implements OnInit, AfterViewInit {
 
   onContactSelected(contact: ContactsEntity): void {
     this.navigateToDetail(contact.id);
+  }
+
+  @HostListener('window:resize')
+  @debounceEvent()
+  onWindowResize(): void {
+    const width = window.innerWidth;
+    const shouldClose = this.isViewingContact && this.isViewingListing && width < this.breakpoint;
+    if (shouldClose) {
+      this.toggleSidenav();
+    }
   }
 
   /**
@@ -75,6 +87,14 @@ export class ListingComponent implements OnInit, AfterViewInit {
     return record.id === this.selectedId;
   }
 
+  getSubheader(group: ContactsEntity[]): string {
+    const firstContact = group[0];
+    if (firstContact.nameLast.length) {
+      return firstContact.nameLast[0];
+    }
+    return firstContact.nameFirst[0];
+  }
+
   navigateToDetail(id: string | number): void {
     this.router.navigate(['contacts', id]);
   }
@@ -91,6 +111,10 @@ export class ListingComponent implements OnInit, AfterViewInit {
         if (id !== null) {
           this.contactsFacade.select(id);
           this.selectedId = id;
+          const shouldOpen = this.isViewingListing && window.innerWidth < this.breakpoint;
+          if (shouldOpen) {
+            this.toggleSidenav();
+          }
         }
       });
     }

@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Contact } from '@contacts/api-interface';
 
 /**
  * Injection token for an app's environment file.
@@ -21,4 +22,19 @@ export function getHash(value: string): string {
     hash = hash & hash; // Convert to 32bit integer
   }
   return hash.toString();
+}
+
+export function debounceEvent(delay: number = 150): MethodDecorator {
+  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    let timeout = null;
+
+    const original = descriptor.value;
+
+    descriptor.value = function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => original.apply(this, args), delay);
+    };
+
+    return descriptor;
+  };
 }
