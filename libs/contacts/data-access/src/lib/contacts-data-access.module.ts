@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { ContactsEffects } from './+state/contacts.effects';
 import { ContactsFacade } from './+state/contacts.facade';
 import * as fromContacts from './+state/contacts.reducer';
+import { ContactResolver } from './contact.resolver';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import * as fromContacts from './+state/contacts.reducer';
     StoreModule.forFeature(fromContacts.CONTACTS_FEATURE_KEY, fromContacts.reducer),
     EffectsModule.forFeature([ContactsEffects])
   ],
-  providers: [ContactsFacade]
+  providers: [ContactsFacade, ContactResolver]
 })
 export class ContactsDataAccessModule {}

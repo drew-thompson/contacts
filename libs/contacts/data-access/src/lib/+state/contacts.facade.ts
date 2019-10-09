@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as ContactsActions from './contacts.actions';
+import { ContactsEntity } from './contacts.models';
 import * as fromContacts from './contacts.reducer';
 import * as ContactsSelectors from './contacts.selectors';
 
@@ -19,11 +20,15 @@ export class ContactsFacade {
     this.store.dispatch(ContactsActions.loadContacts());
   }
 
-  select(selectedId: string | number): void {
+  select(selectedId: string): void {
     this.store.dispatch(ContactsActions.selectContact({ selectedId }));
   }
 
   deselect(): void {
     this.store.dispatch(ContactsActions.deselectContact());
+  }
+
+  saveCurrent(contact: ContactsEntity): void {
+    this.store.dispatch(ContactsActions.saveContact({ contact }));
   }
 }

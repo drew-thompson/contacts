@@ -77,7 +77,7 @@ export const getSelected = createSelector(
 
 export const getIsSelectedContact = createSelector(
   getSelectedId,
-  (id: string | number, props: string | number) => id === props
+  (id: string, props: string) => id === props
 );
 
 const byLastNameDefaultFirstName = (a: ContactsEntity, b: ContactsEntity) => {

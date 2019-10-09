@@ -18,6 +18,8 @@ export interface Contact {
   address?: string;
   /** Any further information associated with this contact. */
   notes?: string;
+  /** Unique identifier. */
+  id?: string;
 }
 
 /**

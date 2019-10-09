@@ -12,7 +12,6 @@ export class ContactsEffects {
   loadContacts$ = createEffect(() =>
     this.dataPersistence.fetch(ContactsActions.loadContacts, {
       run: (action: ReturnType<typeof ContactsActions.loadContacts>, state: ContactsPartialState) => {
-        // Your custom service 'load' logic goes here. For now just return a success action...
         return this.contactsService.getContacts().pipe(
           map(contacts => {
             if (!contacts) {
@@ -26,6 +25,28 @@ export class ContactsEffects {
       },
 
       onError: (action: ReturnType<typeof ContactsActions.loadContacts>, error) => {
+        console.error('Error', error);
+        return ContactsActions.loadContactsFailure({ error });
+      }
+    })
+  );
+
+  saveContact$ = createEffect(() =>
+    this.dataPersistence.pessimisticUpdate(ContactsActions.saveContact, {
+      run: (action: ReturnType<typeof ContactsActions.saveContact>, state: ContactsPartialState) => {
+        return this.contactsService.saveContact(action.contact).pipe(
+          map(res => {
+            console.log(res);
+            if (!res) {
+              throw new Error('Contact could not be updated.');
+            }
+            const { id } = action.contact;
+            return ContactsActions.saveContactSuccess({ update: { id, changes: res.data } });
+          })
+        );
+      },
+
+      onError: (action: ReturnType<typeof ContactsActions.saveContact>, error) => {
         console.error('Error', error);
         return ContactsActions.loadContactsFailure({ error });
       }

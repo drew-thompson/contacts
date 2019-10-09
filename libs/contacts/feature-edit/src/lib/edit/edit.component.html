@@ -1,43 +1,47 @@
-<article class="container-fluid">
-
-  <ng-container *ngTemplateOutlet="name"></ng-container>
-
-  <div class="row">
-    <div class="offset-sm-1 col-6">
-      <ng-container *ngTemplateOutlet="address"></ng-container>
-    </div>
-    <div class="col-12">
-      <hr>
-    </div>
-    <div class="offset-sm-1 col-6">
-      hi
-    </div>
-  </div>
-</article>
-
-<ng-template #name>
+<form class="container-fluid" (ngSubmit)="onSubmit()" [formGroup]="form">
   <div id="name-row" class="row no-gutters">
     <div class="col-12 col-sm-4 col-md-3 mr-sm-2">
       <div class="input-container">
-        <input id="first-name" type="text" class="first-name">
+        <input id="first-name" type="text" class="first-name" formControlName="nameFirst">
         <label for="first-name">first name</label>
       </div>
     </div>
 
     <div class="col-12 col-sm-4 col-md-3">
       <div class="input-container">
-        <input id="last-name" type="text" class="last-name">
+        <input id="last-name" type="text" class="last-name" formControlName="nameLast">
         <label for="last-name">last name</label>
       </div>
     </div>
 
     <div class="offset-sm-4 offset-md-6"></div>
   </div>
-</ng-template>
 
-<ng-template #address>
-  <div class="input-container float-label">
-    <label for="address">address</label>
-    <input type="text">
+  <div class="row">
+
+    <div class="offset-sm-1 col-12 col-sm-9">
+      <div class="input-container float-label">
+        <label #label for="phone">phone</label>
+        <input id="phone" type="text" formControlName="phone">
+      </div>
+    </div>
+
+    <div class="col-12">
+      <hr>
+    </div>
+
+    <div class="offset-sm-1 col-12 col-sm-9">
+      <div class="input-container float-label">
+        <label #label for="address">address</label>
+        <textarea id="address" type="text" formControlName="address"></textarea>
+      </div>
+      <pre>{{ form.value | json }}</pre>
+    </div>
   </div>
-</ng-template>
+
+  <mat-toolbar id="controls">
+    <button routerLink="/contacts/create" type="button">+</button>
+    <button type="submit">Done</button>
+  </mat-toolbar>
+
+</form>

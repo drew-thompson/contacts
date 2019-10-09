@@ -1,5 +1,5 @@
 import { Contact, Message } from '@contacts/api-interface';
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -21,8 +21,8 @@ export class AppController {
     return { data: this.appService.getContacts() };
   }
 
-  @Post('contacts')
-  postContacts(): { data: Message } {
-    return { data: this.appService.getData() };
+  @Post('contact')
+  updateContact(@Body() contact: Contact): { data: Contact } {
+    return { data: this.appService.updateContact(contact) };
   }
 }

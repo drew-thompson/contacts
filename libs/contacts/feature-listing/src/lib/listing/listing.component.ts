@@ -19,7 +19,7 @@ export class ListingComponent implements OnInit, AfterViewInit {
   /** Whether the user is viewing a selected contact. */
   isViewingContact = false;
   /** Index of the selected contact. */
-  selectedId: string | number;
+  selectedId: string;
 
   /** Whether the user is editing a contact. */
   isEditing$: Observable<boolean>;
@@ -97,7 +97,7 @@ export class ListingComponent implements OnInit, AfterViewInit {
     return firstContact.nameFirst[0];
   }
 
-  navigateToDetail(id: string | number): void {
+  navigateToDetail(id: string): void {
     this.router.navigate(['contacts', id]);
   }
 
