@@ -13,6 +13,8 @@ import { ContainerComponent } from '@contacts/common/utils';
 import { ContactsEntity, ContactsFacade, saveContactFailure, saveContactSuccess } from '@contacts/contacts/data-access';
 import { Actions } from '@ngrx/effects';
 import { filter, take } from 'rxjs/operators';
+import { Update } from '@ngrx/entity';
+import { Contact } from '@contacts/api-interface';
 
 @Component({
   selector: 'contacts-edit',
@@ -60,7 +62,7 @@ export class EditComponent extends ContainerComponent implements OnInit, AfterVi
     this.form.disable();
 
     const contact = { ...this.contact, ...form };
-    this.onAction(saveContactSuccess).subscribe(a => this.onSuccess(a));
+    this.onAction(saveContactSuccess).subscribe(a => this.onSuccess(a as Update<Contact>));
     this.onAction(saveContactFailure).subscribe(a => this.onError(a));
     this.contactsFacade.saveCurrent(contact);
   }
@@ -107,8 +109,8 @@ export class EditComponent extends ContainerComponent implements OnInit, AfterVi
     labels.forEach(label => (label.style.minWidth = `${width}px`));
   }
 
-  private onSuccess(action): void {
-    console.log(action);
+  private onSuccess(update: Update<Contact>): void {
+    console.log(update);
     this.hasSaved = true;
     this.router.navigate(['../'], { relativeTo: this.route });
   }
